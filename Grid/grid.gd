@@ -108,6 +108,12 @@ func swap_pieces(column, row, direction):
 	all_pieces[column][row] = other_piece
 	first_piece.move_piece(Vector2(direction.x * offset, direction.y * -offset))
 	other_piece.move_piece(Vector2(direction.x * -offset, direction.y * offset))
+	Global.moves -= 1
+	get_parent().get_node("HUD/Moves").text = "Moves: " + str(Global.moves)
+	if Global.moves < 0:
+		Global.score = 0
+		Global.moves = 10
+		var _target = get_tree().change_scene("res://UI/Lose.tscn")
 
 func touch_difference(touch_1, touch_2):
 	var difference = touch_2 - touch_1

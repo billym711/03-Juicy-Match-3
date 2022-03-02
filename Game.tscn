@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Grid/grid.gd" type="Script" id=1]
 [ext_resource path="res://Pieces/Piece Background.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/1.wav" type="AudioStream" id=9]
 [ext_resource path="res://Assets/3.wav" type="AudioStream" id=10]
 [ext_resource path="res://Assets/2.wav" type="AudioStream" id=11]
+[ext_resource path="res://Camera.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -57,10 +58,22 @@ texture = ExtResource( 4 )
 [node name="Score" type="Label" parent="HUD"]
 margin_left = 40.0
 margin_top = 7.0
-margin_right = 566.0
+margin_right = 412.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 1 )
 text = "	"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Moves" type="Label" parent="HUD"]
+margin_left = 458.0
+margin_top = 3.0
+margin_right = 573.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 1 )
+text = "	Moves: 10"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -83,6 +96,11 @@ pitch_scale = 1.7
 [node name="3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -17.619
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 12 )
 
 [connection signal="finished" from="Music" to="grid" method="_on_Music_finished"]
 [connection signal="finished" from="Music" to="Music" method="_on_Music_finished"]

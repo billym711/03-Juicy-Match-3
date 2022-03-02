@@ -3,6 +3,7 @@ extends Node
 var camera = null
 
 var score = 0
+var moves = 10
 signal changed
 var scores = {
 	0:0,
@@ -27,3 +28,13 @@ func _unhandled_input(event):
 func change_score(s):
 	score += s
 	emit_signal("changed")
+	camera = null
+	if camera == null:
+		camera = get_node_or_null("/root/Game/Camera")
+	if camera != null:
+		camera.add_trauma(s/20.0)
+	if score >= 100:
+		score = 0
+		moves = 10
+		var _target = get_tree().change_scene("res://UI/End.tscn")
+
